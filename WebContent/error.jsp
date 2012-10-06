@@ -31,7 +31,7 @@
                     Trying to expose all the data i'm trying to protect.<br />
                     Or insert some kind of malicious code.<br />
                     Bwah, not cool man! Not cool.<br />
-                    Let's see how you like it. Doing your job and everyhing.<br />
+                    Let's see how you like it. Doing your job and everything.<br />
                     And then someone like you comes along, and tries to mess up all your work.<br />
                     Now go away, you make me sick.
                     </td>

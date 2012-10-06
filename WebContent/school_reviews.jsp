@@ -3,7 +3,7 @@
 <%@page errorPage="error.jsp" %>
 
 <sql:query var="school" dataSource="jdbc/lut2">
-    SELECT * FROM school '
+    SELECT * FROM school
     WHERE school_id = ? <sql:param value="${param.school_id}"/>
 </sql:query>
 <sql:query var="reviews" dataSource="jdbc/lut2">
