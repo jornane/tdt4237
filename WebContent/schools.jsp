@@ -42,9 +42,9 @@
                     <tr>
                         <td>
                             <form action="school_reviews.jsp">
-                                <input type="hidden" name="school_id" value="${schoolDetails[2]}" />
-                                <input type="hidden" name="school_fullname" value="${schoolDetails[3]}" />
-                                <input type="hidden" name="school_shortname" value="${schoolDetails[4]}" />
+                                <input type="hidden" name="school_id" value="<c:out value="${schoolDetails[2]}"/>" />
+                                <input type="hidden" name="school_fullname" value="<c:out value="${schoolDetails[3]}"/>" />
+                                <input type="hidden" name="school_shortname" value="<c:out value="${schoolDetails[4]}"/>" />
                                 <input type="submit" value="Read reviews" />
                             </form>
                         </td>

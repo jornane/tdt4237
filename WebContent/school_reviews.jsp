@@ -46,7 +46,7 @@
                 <tr>
                     <td>
                         <form action="add_review.jsp"  method="post">
-                            <input type="hidden" name="school_id" value="${param.school_id}" />
+                            <input type="hidden" name="school_id" value="<c:out value="${param.school_id}"/>" />
                             <textarea name="review" rows=10 cols=60 wrap="physical" autofocus="on" ></textarea>
                             <br><br>
                             Your name: <input type="text" name="name" />
