@@ -26,9 +26,9 @@
                     But this time I just couldn't perform, i'm so sorry!<br />
                     Please don't be mad at me, I tried my best, really.<br />
                     Don't be mad please, don't yell at me.<br />
-                    It's probably your failt anyway.<br />
+                    It's probably your fault anyway.<br />
                     You're playing some kind of prank on me.<br />
-                    Trying to expose all the data i'm trying to protect.</br >
+                    Trying to expose all the data i'm trying to protect.<br />
                     Or insert some kind of malicious code.<br />
                     Bwah, not cool man! Not cool.<br />
                     Let's see how you like it. Doing your job and everyhing.<br />
