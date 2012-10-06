@@ -20,7 +20,6 @@
         <h1>Approved schools in <c:out value="${param.country}"/></h1>
         <br><br>
         <c:forEach var="schoolDetails" items="${school.rowsByIndex}">
-
             <table border="0">
                 <thead>
                     <tr>
