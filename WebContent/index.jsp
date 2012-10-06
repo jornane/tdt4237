@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@page errorPage="error.jsp" %>
 
 <sql:query var="country" dataSource="jdbc/lut2">
     SELECT full_name FROM country
