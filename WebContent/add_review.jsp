@@ -3,7 +3,10 @@
 
 <sql:transaction dataSource="jdbc/lut2">
     <sql:update var="count">
-        INSERT INTO user_reviews VALUES ('${param.school_id}', '${param.name}', '${param.review}');
+        INSERT INTO user_reviews VALUES (?, ?, ?);
+        <sql:param value="${param.school_id}"/>
+        <sql:param value="${param.name}"/>
+        <sql:param value="${param.review}"/>
     </sql:update>
 </sql:transaction>
 

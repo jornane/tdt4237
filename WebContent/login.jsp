@@ -7,7 +7,7 @@
 <sql:query var="users" dataSource="jdbc/lut2">
     SELECT * FROM admin_users
     WHERE  uname = ? <sql:param value="${param.username}" /> 
-    AND pw = ${param.password}
+    AND pw = ? <sql:param value="${param.password}" />
 </sql:query>
 
     
