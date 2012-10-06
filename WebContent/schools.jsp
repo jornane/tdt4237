@@ -7,6 +7,13 @@
     WHERE school.country = country.short_name
     AND country.full_name = ? <sql:param value="${param.country}"/>
 </sql:query>
+<c:choose>
+<c:when test="${school.rowCount == 0}">
+<%
+response.sendRedirect("./");
+%>
+</c:when>
+</c:choose>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

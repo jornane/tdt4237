@@ -1,10 +1,16 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page errorPage="error.jsp" %>
 
 <sql:query var="school" dataSource="jdbc/lut2">
     SELECT * FROM school
     WHERE school_id = ? <sql:param value="${param.school_id}"/>
 </sql:query>
+<c:choose>
+<c:when test="${school.rowCount == 0}">
+	<% response.sendError(404, "School not found." ); %>
+</c:when>
+</c:choose>
 <sql:query var="reviews" dataSource="jdbc/lut2">
     SELECT * FROM user_reviews, school
     WHERE user_reviews.school_id = school.school_id
