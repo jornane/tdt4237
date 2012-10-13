@@ -19,25 +19,29 @@
 <c:set var="adminUserDetails" value="${adminUsers.rows[0]}" />
 
 <c:choose>
-	<c:when test="${ not empty userDetails }">
+	<c:when test="${ not empty adminUserDetails }">
 		<%  // this is for not being able to differenciate between failure
-			%><c:set var="DBsalt" value="${userDetails.salt}" />
+			%><c:set var="DBsalt" value="${adminUserDetails.salt}" />
 		<% 
 			%><c:set var="pass" value="${param.password}" />
 		<%
-			%><c:set var="correctPass" value="${userDetails.pw}" />
+			%><c:set var="correctPass" value="${adminUserDetails.pw}" />
 		<%
 				String salt = pageContext.getAttribute("DBsalt").toString();
 				String password = pageContext.getAttribute("pass").toString();
 				String correctPass = pageContext.getAttribute("correctPass").toString();
 				
 				String pwhash = Password.hashWithSalt(password, salt);
+				
 				int loginResult = 1;
 				if (pwhash.equals(correctPass) ) {
 					loginResult = 0;
 				}
 			%>
-		<c:set var="loginSuccess" value="<%=loginResult %>" />
+		<c:set var="pwhash" value="<%=pwhash%>" />
+				<c:set var="correctPass" value="<%=correctPass%>" />
+		
+		<c:set var="loginSuccess" value="<%=loginResult%>" />
 		<% 
 %>
 	</c:when>
@@ -103,9 +107,9 @@
 								<input type="hidden" value="<c:out value="${user[0]}" />"
 									name="email" maxlength="100" size="100" /> E-mail: <input
 									type="text" value="<c:out value="${user[0]}" />"
-									name="newEmail" maxlength="100" size="100" /> <br> Salt:
+									name="newEmail" maxlength="100" size="100" /> <br> Hash:
 								<c:out value="${user[1]}" />
-								<br> Hash:
+								<br> Salt:
 								<c:out value="${user[2]}" />
 								<br> Password: <input type="text"
 									placeholder="Enter new password" name="password"

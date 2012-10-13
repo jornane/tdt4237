@@ -1,15 +1,41 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page errorPage="error.jsp" %>
+<%@page errorPage="error.jsp"%>
+ <%@ page import="password.Password"%>
 
-<sql:transaction dataSource="jdbc/lut2">
-    <sql:update var="count">
+
+<c:choose>
+	<c:when test="${ not empty param.password }">
+		<%
+			String password = request.getParameter("password");
+			String salt = Password.getSalt();
+			String pwhash = Password.hashWithSalt(password, salt);
+		%>
+		<c:set var="DBpass" value="<%=pwhash%>" />
+		<c:set var="DBsalt" value="<%=salt%>" />
+
+		<sql:transaction dataSource="jdbc/lut2">
+			<sql:update var="count">
         UPDATE users SET
-        email = ? <sql:param value="${param.newEmail}"/>
+        pw = ? <sql:param value="${DBpass}" />,
+        salt = ? <sql:param value="${DBsalt}" />,
+        uname = ? <sql:param value="${param.newEmail}" />
         WHERE
-        email = ? <sql:param value="${param.email}"/>
-    </sql:update>
-</sql:transaction>
+        uname = ? <sql:param value="${param.email}" />
+			</sql:update>
+		</sql:transaction>
+	</c:when>
+	<c:otherwise>
+		<sql:transaction dataSource="jdbc/lut2">
+			<sql:update var="count">
+        UPDATE users SET
+        uname = ? <sql:param value="${param.newEmail}" />
+        WHERE
+        uname = ? <sql:param value="${param.email}" />
+			</sql:update>
+		</sql:transaction>
+	</c:otherwise>
+</c:choose>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,7 +55,8 @@
 			User updated.
 		</c:otherwise>
 	</c:choose>
-	<br><br>
-	You will be redirected to the LUT2.0 main page in a few seconds.
+	<br>
+	<br> You will be redirected to the LUT2.0 main page in a few
+	seconds.
 </body>
 </html>

@@ -5,7 +5,7 @@
 <sql:transaction dataSource="jdbc/lut2">
     <sql:update var="count">
         DELETE FROM users WHERE
-        email = ? <sql:param value="${param.email}"/>
+        uname = ? <sql:param value="${param.email}"/>
     </sql:update>
 </sql:transaction>
 

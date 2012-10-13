@@ -1,7 +1,7 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page errorPage="error.jsp" %>
-
+<%-- <%@page errorPage="error.jsp" %>
+ --%>
 <sql:query var="countries" dataSource="jdbc/lut2">
     SELECT * FROM country
     WHERE full_name = ? <sql:param value="${param.country}" />
@@ -15,10 +15,6 @@
 	OR school.full_name = ? <sql:param value="${param.full_name_school}" /> )
 </sql:query>
 
-<sql:query var="id" dataSource="jdbc/lut2">
-    SELECT school_id+1 FROM school
-    WHERE school_id = max(school_id)
-</sql:query>
 
 <c:set var="country" value="${countries.rows[0]}"/>
 
@@ -50,8 +46,7 @@
 		</c:when>	
 		<c:when test="${existingSchools.rowCount == 0}">
 			<sql:update var="school" dataSource="jdbc/lut2">
-        INSERT INTO school VALUES (?, ?, ?, ?, ?, ?);
-       			<sql:param value="20" />
+        INSERT INTO school (full_name, short_name, place, zip, country) VALUES (?, ?, ?, ?, ?);
        			<sql:param value="${param.full_name_school}" />
 				<sql:param value="${param.short_name_school}" />
 				<sql:param value="${param.place_school}" />
