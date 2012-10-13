@@ -43,6 +43,10 @@ public class ValidationService {
 		return expires.containsValue(email);
 	}
 	
+	public void invalidate(String email) {
+		uuids.remove(email);
+	}
+	
 	protected void garbageCollect() {
 		Date ceiling = new Date();
 		ceiling.setTime(ceiling.getTime()-lifetime);
