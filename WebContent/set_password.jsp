@@ -3,7 +3,8 @@
 <%-- <%@page errorPage="error.jsp" %> --%>
 
 <%@ page import="password.Password" %>
-
+<%@ page import="no.ntnu.idi.tdt4237.h2012.g5.lut.ValidationService" %>
+<%@ page import="java.util.UUID" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,22 +16,19 @@
         <title>Password saved!</title>
     </head>
 <body>
-
-	<c:choose>
-		<c:when test="${param.random != '1234ABC'}">
-			<% //  Check link correctness => i.e. exists (used only once!) %>
-			Link is not correct or expired! <br>
-		</c:when>
-		<c:otherwise>
-			<sql:query var="users" dataSource="jdbc/lut2">
+<% 
+	String email = request.getParameter("email");
+	String activationCode = request.getParameter("activationCode");
+	ValidationService vs = ValidationService.getInstance(600000);
+	Boolean valid = vs.checkActivationCode(email, UUID.fromString(activationCode));
+	vs.invalidate(email);
+	if (valid) {
+		%>
+		<sql:query var="users" dataSource="jdbc/lut2">
     			SELECT * FROM users
     			WHERE uname = ? <sql:param value="${param.email}" />
 			</sql:query>
 			<c:set var="userDetails" value="${users.rows[0]}"/>
-			<%
-				// does the user exist?
-			%>
-
 			<%
 				String username = request.getParameter("email");
 				String password = request.getParameter("pass");
@@ -74,8 +72,15 @@
 
 				</c:otherwise>
 			</c:choose>
-		</c:otherwise>
-	</c:choose>
+		<%		
+	} else {
+		%>
+		Link is not correct or expired!
+		
+		<%
+	}
+%>
+
 	<br> You will be redirected to the LUT2.0 main page in a few
 	seconds.
 </body>

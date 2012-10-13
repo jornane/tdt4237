@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ page import="no.ntnu.idi.tdt4237.h2012.g5.lut.ValidationService" %>
+<%@ page import="java.util.UUID" %>
 
 <!DOCTYPE html>
 
@@ -14,22 +15,28 @@
 </head>
 
 <body>
-	<c:choose>
-		<c:when test="${param.random == '1234ABC'}"> <%-- Check link correctness => i.e. exists (used only once!) --%>
-			<form method="post" action="set_password.jsp">
+
+<% 
+	String email = request.getParameter("email");
+	String activationCode = request.getParameter("activationCode");
+	ValidationService vs = ValidationService.getInstance(600000);
+	Boolean valid = vs.checkActivationCode(email, UUID.fromString(activationCode));
+	if (valid) {
+		%>
+		<form method="post" action="set_password.jsp">
 				<input type="hidden" name="email" value="${param.email}" />
-				<input type="hidden" name="random"   value="${param.random}" /> <% //  the random value from link otherwise can change the username (should not make it used at this point!) %> 
+				<input type="hidden" name="activationCode"   value="${param.activationCode}" /> <% //  the random value from link otherwise can change the username (should not make it used at this point!) %> 
 				Please enter your new password <input type="password" name="pass" /><br>
 				<input type="submit" value="submit" />
-			</form>
-			<br>
-			<br>
-		</c:when>
-		<c:otherwise>
-			Link is not correct or expired!
-			<br> <br>
-		</c:otherwise>
-	</c:choose>
+		</form>
+		<%
+	} else {
+		%>
+		Link is not correct or expired!
+		
+		<%
+	}
+%>
 </body>
 </html>
 

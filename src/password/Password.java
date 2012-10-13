@@ -1,12 +1,9 @@
 package password;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 import sun.misc.BASE64Encoder;
-
 
 
 public class Password {
@@ -16,17 +13,23 @@ public class Password {
     private static final int SALT_LENGTH = 10;
     private static final BASE64Encoder encoder = new BASE64Encoder();
 	
-	public static final String getSalt() throws UnsupportedEncodingException {
-        SecureRandom random = new SecureRandom();
-        byte bytes[] = new byte[SALT_LENGTH];
-        random.nextBytes(bytes);
-        String salt = encoder.encode(bytes);
-        return salt;
+	public static final String getSalt() {
+		try {
+	        SecureRandom random = new SecureRandom();
+	        byte bytes[] = new byte[SALT_LENGTH];
+	        random.nextBytes(bytes);
+	        String salt = encoder.encode(bytes);
+	        return salt;
+		} catch (Exception e){
+			throw new AssertionError("UTF-8 is unknown."); //This probably never happens but it's better to be safe - http://stackoverflow.com/questions/6030059/url-decoding-unsupportedencodingexception-in-java
+		}
+        
     }
 	
 	
-	public static final String hashWithSalt(String password, String salt) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        String result;
+	public static final String hashWithSalt(String password, String salt) {
+        try {
+        	String result;
         	byte[] hash = null;
             byte[] MessageBytes = password.getBytes(ENCODING);
             byte[] saltBytes = salt.getBytes(ENCODING);
@@ -36,7 +39,10 @@ public class Password {
             md.update(MessageBytes);
             hash = md.digest();
             result = encoder.encode(hash);
-        return result;
+            return result;
+        } catch (Exception e) {
+        	throw new AssertionError("UTF-8 is unknown or unknown algorithm"); //This probably never happens but it's better to be safe
+        }
     }
 	
 
