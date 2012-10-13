@@ -3,6 +3,7 @@ package no.ntnu.idi.tdt4237.h2012.g5.lut;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.UUID;
@@ -23,23 +24,36 @@ public class ValidationService {
 	}
 	
 	public UUID getActivationCode(String email) {
-		expires.put(new Date(), email);
 		UUID result = uuids.get(email);
 		if (result != null) {
 			garbageCollect();
 			if (expires.containsValue(email))
 				return result;
 		}
+		expires.put(new Date(), email);
 		uuids.put(email, result = UUID.randomUUID());
 		return result;
+	}
+	
+	public boolean checkActivationCode(String email, UUID uuid) {
+		UUID result = uuids.get(email);
+		if (result == null)
+			return false;
+		garbageCollect();
+		return expires.containsValue(email);
 	}
 	
 	protected void garbageCollect() {
 		Date ceiling = new Date();
 		ceiling.setTime(ceiling.getTime()-lifetime);
-		for(Entry<Date,String> e : expires.headMap(ceiling).entrySet()) {
+		for (
+				Iterator<Entry<Date, String>> iterator
+					= expires.headMap(ceiling).entrySet().iterator();
+				iterator.hasNext();
+			) {
+			Entry<Date,String> e = iterator.next();
+			iterator.remove();
 			uuids.remove(e.getValue());
-			expires.remove(e.getKey());
 		}
 	}
 	
@@ -56,15 +70,4 @@ public class ValidationService {
 		return getInstance(lifetime);
 	}
 	
-	public static void main(String... args) throws InterruptedException {
-		ValidationService service = new ValidationService(1);
-		String code1 = service.getActivationCode("yorinad@stud.ntnu.no").toString();
-		String code2 = service.getActivationCode("yorinad@stud.ntnu.no").toString();
-		Thread.sleep(3000);
-		String code3 = service.getActivationCode("yorinad@stud.ntnu.no").toString();
-		System.out.println(code1);
-		System.out.println(code2);
-		System.out.println(code3);
-	}
-
 }
