@@ -1,6 +1,7 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page errorPage="error.jsp"%>
+<%@ page import="password.Password"%>
 
 <sql:query var="country" dataSource="jdbc/lut2">
     SELECT full_name FROM country
@@ -8,8 +9,7 @@
 
 <sql:query var="adminUsers" dataSource="jdbc/lut2">
     SELECT * FROM admin_users
-    WHERE  uname = ? <sql:param value="${param.username}" /> 
-    AND pw = ? <sql:param value="${param.password}" />
+    WHERE  uname =? <sql:param value="${param.username}" />
 </sql:query>
 
 <sql:query var="users" dataSource="jdbc/lut2">
@@ -17,6 +17,31 @@
 </sql:query>
 
 <c:set var="adminUserDetails" value="${adminUsers.rows[0]}" />
+
+<c:choose>
+	<c:when test="${ not empty userDetails }">
+		<%  // this is for not being able to differenciate between failure
+			%><c:set var="DBsalt" value="${userDetails.salt}" />
+		<% 
+			%><c:set var="pass" value="${param.password}" />
+		<%
+			%><c:set var="correctPass" value="${userDetails.pw}" />
+		<%
+				String salt = pageContext.getAttribute("DBsalt").toString();
+				String password = pageContext.getAttribute("pass").toString();
+				String correctPass = pageContext.getAttribute("correctPass").toString();
+				
+				String pwhash = Password.hashWithSalt(password, salt);
+				int loginResult = 1;
+				if (pwhash.equals(correctPass) ) {
+					loginResult = 0;
+				}
+			%>
+		<c:set var="loginSuccess" value="<%=loginResult %>" />
+		<% 
+%>
+	</c:when>
+</c:choose>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,10 +53,7 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${ empty adminUserDetails }">
-                Login failed
-            </c:when>
-		<c:otherwise>
+		<c:when test="${not empty adminUserDetails and loginSuccess == 0}">
 			<h1>Login succeeded</h1> 
                 Welcome <c:out value="${ adminUserDetails.uname}" />.<br>
 			<br>
@@ -40,8 +62,7 @@
 				<div
 					style="background-color: gray; height: auto; width: 650px; overflow: hidden;">
 					<div style="margin: 2px; background: white; width: auto;">
-						<br> <strong>Add country</strong><br>
-						<br>
+						<br> <strong>Add country</strong><br> <br>
 						<form action="add_country.jsp" method="post">
 							Full name: <input type="text" name="full_name_country"
 								maxlength="50" size="50" /> <br> Short name: <input
@@ -81,8 +102,8 @@
 							<form action="update_user.jsp" method="post">
 								<input type="hidden" value="<c:out value="${user[0]}" />"
 									name="email" maxlength="100" size="100" /> E-mail: <input
-									type="text" value="<c:out value="${user[0]}" />" name="newEmail"
-									maxlength="100" size="100" /> <br> Salt:
+									type="text" value="<c:out value="${user[0]}" />"
+									name="newEmail" maxlength="100" size="100" /> <br> Salt:
 								<c:out value="${user[1]}" />
 								<br> Hash:
 								<c:out value="${user[2]}" />
@@ -100,6 +121,9 @@
 
 					</div>
 				</div>
+		</c:when>
+		<c:otherwise>
+                Login failed
 		</c:otherwise>
 	</c:choose>
 </body>
