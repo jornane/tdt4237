@@ -89,9 +89,5 @@ public class EMailCheck {
 			return INSTANCE;
 		}
 	}
-	
-	public static void main(String... args) {
-		System.out.println(getInstance().check("yorn@stud.ntnu.no") ? "YES" : "NO");
-	}
 
 }

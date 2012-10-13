@@ -97,17 +97,5 @@ public class MailMessage implements Runnable {
 	public Exception getTerminateReason() {
 		return terminateReason;
 	}
-	
-	public static void main(String... args) throws UnknownHostException, IOException, InterruptedException {
-		MailMessage message = new MailMessage(
-				"yorinad@stud.ntnu.no", 
-				"yorinad@stud.ntnu.no", 
-				"Test", 
-				"This is a test mail", InetAddress.getByName("smtp.stud.ntnu.no")
-			);
-		new Thread(message).start();
-		Thread.sleep(3000);
-		message.interrupt();
-	}
 
 }
