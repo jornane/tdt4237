@@ -12,12 +12,14 @@ import java.util.List;
 import javax.naming.NamingException;
 import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
+import javax.naming.directory.BasicAttribute;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 
 public class EMailCheck {
 
-	private static EMailCheck instance;
+	private static final Object LOCK = new Object();
+	private static EMailCheck INSTANCE;
 	
 	protected HashMap<String,List<InetAddress>> validHosts = new HashMap<String,List<InetAddress>>();
 	
@@ -72,20 +74,25 @@ public class EMailCheck {
 		ArrayList<InetAddress> result = new ArrayList<InetAddress>(attr.size());
 		for(int i=0;i<attr.size();i++)
 			try {
-				result.add(InetAddress.getByName(attr.get(i).toString()));
-			} catch (UnknownHostException e) {/* do nothing */}
+				InetAddress address = InetAddress.getByName((attr.get(i).toString().replaceFirst("[0-9]+ ", "")));
+				result.add(address);
+			} catch (UnknownHostException e) {/* do nothing, host is not added*/}
 		validHosts.put(hostName, result);
 		return(result);
 	}
 	
 	public static EMailCheck getInstance() {
-		if (instance != null)
-			return instance;
-		synchronized(instance) {
-			if (instance == null)
-				return instance = new EMailCheck();
-			return instance;
+		if (INSTANCE != null)
+			return INSTANCE;
+		synchronized(LOCK) {
+			if (INSTANCE == null)
+				return INSTANCE = new EMailCheck();
+			return INSTANCE;
 		}
+	}
+	
+	public static void main(String... args) {
+		System.out.println(getInstance().check("yorn@stud.ntnu.no") ? "YES" : "NO");
 	}
 
 }
