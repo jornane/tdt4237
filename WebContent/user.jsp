@@ -36,13 +36,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="lutstyle.css">
-	<title>LUT logging in</title>
 </head>
 <body>
 	<c:choose>
 			<c:when test="${not empty userDetails and loginSuccess == 0}">
-					<h1>Login succeeded</h1> 
-		                Welcome <c:out value="${ userDetails.uname}" />.<br>
 						<%
 		                    String Authorized = "1";
                 			session.setAttribute( "isAuth", Authorized);
