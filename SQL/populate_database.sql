@@ -6,6 +6,19 @@ delete from users;
 
 
 insert into admin_users values ('admin','53P6uKTxQCi4VFTUrVdr986aQ3CIk3YiXDx8jOiy+N6V98hSwC0PFWD5Bq5eIuKlRhuGdI04k7OY4uxMwgt1Ww==','hzxUOP8lWes2Yg==');
+insert into users values ('admin','53P6uKTxQCi4VFTUrVdr986aQ3CIk3YiXDx8jOiy+N6V98hSwC0PFWD5Bq5eIuKlRhuGdI04k7OY4uxMwgt1Ww==','hzxUOP8lWes2Yg==','Admin');
+
+INSERT INTO `users` (`uname`, `pw`, `salt`, `name`)
+VALUES
+	('tiina', '01puwwjMnPJ5jpEtp2x/NuUVgQKgPZ93I3lk6uDrg/Cfh0iJ46rs2WGKlS+iI7SKwi/QySgsrPyO+SgWxVjAKg==', 'FQFk69XCpNQ0GQ==', 'Tiina'),
+	('dat', 'c9XJV1Z34Ej8WQFUKOh/Y4JMNzfGgTbgpFJU0+uLhN2vLrG7VkMm9vtUHcFg+I1WH7/yPezIF3kGUsBjFsfX/w==', '5qUFrNagRspdfA==', 'Dat'),
+	('yorn', 'NOeast7Q2Ad0G6KbNP05UZGjQHwvXLKgpNANcrKXv4OV97ts3FM0rZEAZ+7js1UjaRoqJ6tK/KV6gePQ2EFkxA==', 'bPdA8PkfRrqnUQ==', 'Yorn'),
+	('peter', 'q7VKPHX93A4nQIVxcRilixLx9jl+PiOkX8iQq0aO08k8r17oks3RgffgVSK83/jKnReKsBHWBMpmmfEHoet9Tw==', '6JHfI2AR9Q2cZw==', 'Peter'),
+	('saad', 't8lTn3VsXOppL5YkSU4FrF/s+5rGUvna24qrkr3sx9UE4sYiKtL5g7f4Gof8qqZoD1Dpg2LushTub70NNUAhmw==', '7CdfaF1Dfg//WQ==', 'Saad');
+
+
+
+
 
 
 insert into country values ('NO','Norway');

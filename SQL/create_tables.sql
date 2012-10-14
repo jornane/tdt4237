@@ -38,5 +38,6 @@ create table users(
 uname varchar(100) NOT NULL,
 pw varchar(100),
 salt varchar(100),
+name varchar(100),
 PRIMARY KEY (uname)
 );
