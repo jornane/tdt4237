@@ -7,11 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="stylesheet" type="text/css" href="lutstyle.css">
 <title>Signup / password reset</title>
 </head>
 
-<body>
+<body unload="">
 	<form method="post" action="send_email.jsp">
 		Please enter your email: <input type="text" name="email" /><br> <br>
 		<img src="http://localhost:8080/LUT_2.0_Nice/CaptchaServlet"> <br>
