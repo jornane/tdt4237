@@ -72,7 +72,7 @@
 							Full name: <input type="text" name="full_name_country"
 								maxlength="50" size="50" /> <br> Short name: <input
 								type="text" name="short_name_country" maxlength="3" size="3" />
-							<br> <input type="submit" value="Add" /> <br> <br>
+							<br> <input type="submit" value="Add country" /> <br> <br>
 						</form>
 					</div>
 				</div> <br> <br>
@@ -94,8 +94,8 @@
 								type="text" name="short_name_school" maxlength="10" size="10" />
 							<br> Place: <input type="text" name="place_school"
 								maxlength="50" size="50" /> <br> Zip: <input type="text"
-								name="zip_school" maxlength="11" size="11" /> <input
-								type="submit" value="Add" /> <br> <br>
+								name="zip_school" maxlength="11" size="11" /> <br> <input
+								type="submit" value="Add school" /> <br> <br>
 						</form>
 					</div>
 				</div> <br> <br>
@@ -105,6 +105,7 @@
 						<br> <strong>Add user:</strong><br> <br>
 						<form action="add_user.jsp" method="post">
 							Email: <input type="text" name="email" maxlength="100" size="100" /><br>
+							Name: <input type="text" name="name" maxlength="100" size="100" /><br>
 							Password: <input type="text" name="password" maxlength="100"
 								size="100" /><br> <input type="submit" value="Add user" />
 							<br> <br>
@@ -121,7 +122,11 @@
 								<input type="hidden" value="<c:out value="${user[0]}" />"
 									name="email" maxlength="100" size="100" /> E-mail: <input
 									type="text" value="<c:out value="${user[0]}" />"
-									name="newEmail" maxlength="100" size="100" /> <br> Hash:
+									name="newEmail" maxlength="100" size="100" /> <br>
+									Name: <input
+									type="text" value="<c:out value="${user[3]}" />"
+									name="name" maxlength="100" size="100" /> <br>
+									 Hash:
 								<c:out value="${user[1]}" />
 								<br> Salt:
 								<c:out value="${user[2]}" />

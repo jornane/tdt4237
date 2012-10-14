@@ -29,10 +29,11 @@ else if(!isAuthVal.equals("2"))
 		<c:set var="DBsalt" value="<%=salt%>" />
 
     <sql:update var="count">
-        INSERT INTO users VALUES (?, ?, ?);
+        INSERT INTO users VALUES (?, ?, ?, ?);
         <sql:param value="${param.email}"/>
         <sql:param value="${DBpass}"/>
         <sql:param value="${DBsalt}"/>
+         <sql:param value="${param.name}"/>       
     </sql:update>
 </sql:transaction>
 

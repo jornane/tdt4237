@@ -35,7 +35,8 @@ else if(!isAuthVal.equals("2"))
         UPDATE users SET
         pw = ? <sql:param value="${DBpass}" />,
         salt = ? <sql:param value="${DBsalt}" />,
-        uname = ? <sql:param value="${param.newEmail}" />
+        uname = ? <sql:param value="${param.newEmail}" />,
+        name = ? <sql:param value="${param.name}" />
         WHERE
         uname = ? <sql:param value="${param.email}" />
 			</sql:update>
@@ -45,7 +46,8 @@ else if(!isAuthVal.equals("2"))
 		<sql:transaction dataSource="jdbc/lut2">
 			<sql:update var="count">
         UPDATE users SET
-        uname = ? <sql:param value="${param.newEmail}" />
+        uname = ? <sql:param value="${param.newEmail}" />,
+        name = ? <sql:param value="${param.name}" />
         WHERE
         uname = ? <sql:param value="${param.email}" />
 			</sql:update>
