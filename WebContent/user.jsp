@@ -44,8 +44,11 @@
 					<h1>Login succeeded</h1> 
 		                Welcome <c:out value="${ userDetails.uname}" />.<br>
 						<%
+							String User_Name_For_Session = request.getParameter("username");
+							//out.println("isAuthVal : " + User_Name_For_Session + "<br/>");
 		                    String Authorized = "1";
                 			session.setAttribute( "isAuth", Authorized);
+                			session.setAttribute( "username", User_Name_For_Session);                			
                 			response.sendRedirect("./");
                 		%>
 		        </c:when>
