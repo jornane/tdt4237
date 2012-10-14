@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><form method="post" action="admin.jsp">
+                    <td><form method="post" action="validate_admin_login.jsp">
 
                             <p>
                                 Username: <input type="text" name="username" size="20"></p>

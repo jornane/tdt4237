@@ -60,7 +60,7 @@ else if(!isAuthVal.equals("2"))
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh" content="5;url=index.jsp">
+<meta http-equiv="refresh" content="5;url=admin.jsp">
 <link rel="stylesheet" type="text/css" href="lutstyle.css">
 <title>User updated!</title>
 </head>
@@ -74,7 +74,7 @@ else if(!isAuthVal.equals("2"))
 		</c:otherwise>
 	</c:choose>
 	<br>
-	<br> You will be redirected to the LUT2.0 main page in a few
-	seconds.
+	<br> 
+	You will be redirected to the admin page in a few seconds.
 </body>
 </html>
