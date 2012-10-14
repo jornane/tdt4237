@@ -18,7 +18,7 @@ public class Password {
 	        SecureRandom random = new SecureRandom();
 	        byte bytes[] = new byte[SALT_LENGTH];
 	        random.nextBytes(bytes);
-	        String salt = encoder.encode(bytes);
+	        String salt = encoder.encode(bytes).replaceAll("[\\s]+", "");
 	        return salt;
 		} catch (Exception e){
 			throw new AssertionError("UTF-8 is unknown."); //This probably never happens but it's better to be safe - http://stackoverflow.com/questions/6030059/url-decoding-unsupportedencodingexception-in-java
@@ -38,7 +38,7 @@ public class Password {
             md.update(saltBytes);
             md.update(MessageBytes);
             hash = md.digest();
-            result = encoder.encode(hash);
+            result = encoder.encode(hash).replaceAll("[\\s]+", "");
             return result;
         } catch (Exception e) {
         	throw new AssertionError("UTF-8 is unknown or unknown algorithm"); //This probably never happens but it's better to be safe
