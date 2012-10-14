@@ -41,8 +41,11 @@
 	<c:choose>
 			<c:when test="${not empty userDetails and loginSuccess == 0}">
 						<%
+							String User_Name_For_Session = request.getParameter("username");
+
 		                    String Authorized = "1";
                 			session.setAttribute( "isAuth", Authorized);
+                			session.setAttribute( "username", User_Name_For_Session);                			
                 			response.sendRedirect("./");
                 		%>
 		        </c:when>
