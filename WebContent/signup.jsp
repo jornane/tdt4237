@@ -12,7 +12,7 @@
 <title>Signup / password reset</title>
 </head>
 
-<body unload="">
+<body>
 	<form method="post" action="send_email.jsp">
 		Please enter your email: <input type="text" name="email" /><br> <br>
 		<img src="CaptchaServlet"> <br>
