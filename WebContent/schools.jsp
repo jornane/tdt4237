@@ -51,7 +51,7 @@ response.sendRedirect("./");
 	<br>
 	<br>
 	<c:forEach var="schoolDetails" items="${school.rowsByIndex}">
-		<table border="0">
+		<table>
 			<thead>
 				<tr>
 					<th colspan="2"><c:out value="${schoolDetails[3]}" /></th>

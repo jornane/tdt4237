@@ -38,7 +38,7 @@ else if(!isAuthVal.equals("1"))
 	<br>
 
 	<h1>Hi student!</h1>
-	<table border="0">
+	<table>
 		<thead>
 			<tr>
 				<th>LUT 2.0 provides information about approved international

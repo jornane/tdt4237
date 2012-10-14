@@ -74,7 +74,7 @@ else if(!isAuthVal.equals("1"))
 
 
 
-	<table border="0">
+	<table>
 		<thead>
 			<tr>
 				<th colspan="2">Help improving LUT2.0 by adding a review of <c:out

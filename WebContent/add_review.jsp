@@ -38,6 +38,5 @@ else if(!isAuthVal.equals("1"))
         <h1>Thanks <c:out value="${param.name}"/>!</h1>
         Your contribution is appreciated.<br>
         You will be redirected back to the review page in a few seconds.
-    </tr>
-</body>
+	</body>
 </html>
