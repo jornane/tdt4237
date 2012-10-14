@@ -25,15 +25,19 @@
 		ValidationService vs = ValidationService.getInstance(600000); // lifetime in milliseconds (10min = 600000)
 		String activationCode = vs.getActivationCode(email).toString();
 		// save it to validation service thing
-		String link = "password.jsp?email=" + email + "&activationCode=" + activationCode;
+		String link = request.getScheme() + "://" + request.getLocalName() + ":" + request.getLocalPort() + request.getContextPath() + "/"; 
+		link += "password.jsp?email=" + email + "&activationCode=" + activationCode;
 		
 		String message = "To set a new password for your account in ";
-		message += "LUT go to the following webpage: \n http://localhost:8080/LUT_2.0_6_new/" + link + "\n";
+		message += "LUT go to the following webpage: \n " + link + "\n";
 		message += "\n\n";
 		
-		new MailMessage("yorinad@stud.ntnu.no", email, "Set password for your LUT account", message, InetAddress.getByName("smtp.stud.ntnu.no")).run();
+		
+		//new MailMessage("yorinad@stud.ntnu.no", email, "Set password for your LUT account", message, InetAddress.getByName("smtp.stud.ntnu.no")).run();
 		
 		%>
+		<a href=<%=link %>>Set password here for TESTING</a> <br>
+		
 		Email sent to <c:out value="${param.email}"/> <br>
 		<%
 	} else {
