@@ -9,7 +9,7 @@ String isAuthVal = (String)session.getAttribute( "isAuth" );
 	
 if(isAuthVal == null)
 {
-	response.sendRedirect("./login.jsp");
+	response.sendRedirect("./adminlogin.jsp");
 }
 else if(!isAuthVal.equals("2"))
 {
