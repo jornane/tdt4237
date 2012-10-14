@@ -57,6 +57,10 @@
 		<c:when test="${not empty adminUserDetails and loginSuccess == 0}">
 			<h1>Login succeeded</h1> 
                 Welcome <c:out value="${ adminUserDetails.uname}" />.<br>
+                <%
+                String Authorized = "2";
+                session.setAttribute( "isAuth", Authorized);
+                %>                
 			<br>
 			<br>
 			<td>
