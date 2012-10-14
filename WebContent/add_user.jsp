@@ -18,7 +18,6 @@ else if(!isAuthVal.equals("2"))
 
 %>
 
-
 <sql:transaction dataSource="jdbc/lut2">
 		<%
 			String password = request.getParameter("password");
@@ -36,7 +35,6 @@ else if(!isAuthVal.equals("2"))
          <sql:param value="${param.name}"/>       
     </sql:update>
 </sql:transaction>
-
 
 <c:set var="country" value="${countries.rows[0]}"/>
 

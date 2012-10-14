@@ -3,7 +3,6 @@
 <%@page errorPage="error.jsp"%>
 <%@ page import="password.Password"%>
 
-
 <%
 
 String isAuthVal = (String)session.getAttribute( "isAuth" );
