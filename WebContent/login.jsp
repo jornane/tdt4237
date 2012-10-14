@@ -38,9 +38,6 @@
 					loginResult = 0;
 				}
 			%>
-		<c:set var="pwhash" value="<%=pwhash%>" />
-				<c:set var="correctPass" value="<%=correctPass%>" />
-		
 		<c:set var="loginSuccess" value="<%=loginResult%>" />
 		<% 
 %>
@@ -98,6 +95,19 @@
 						</form>
 					</div>
 				</div> <br> <br>
+				<div
+					style="background-color: gray; height: auto; width: 650px; overflow: hidden;">
+					<div style="margin: 2px; background: white; width: auto;">
+						<br> <strong>Add user:</strong><br> <br>
+						<form action="add_user.jsp" method="post">
+							Email: <input type="text" name="email" maxlength="100" size="100" /><br>
+							Password: <input type="text" name="password" maxlength="100"
+								size="100" /><br> <input type="submit" value="Add user" />
+							<br> <br>
+						</form>
+					</div>
+				</div>
+				<br> <br>
 				<div
 					style="background-color: gray; height: auto; width: 650px; overflow: hidden;">
 					<div style="margin: 2px; background: white; width: auto;">
