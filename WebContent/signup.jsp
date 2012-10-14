@@ -15,7 +15,7 @@
 <body unload="">
 	<form method="post" action="send_email.jsp">
 		Please enter your email: <input type="text" name="email" /><br> <br>
-		<img src="http://localhost:8080/LUT_2.0_Nice/CaptchaServlet"> <br>
+		<img src="CaptchaServlet"> <br>
 		Captcha: <input type="text" name="code"> <br>
 		<input type="submit" value="submit" />
 	</form>
