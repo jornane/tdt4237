@@ -32,18 +32,17 @@
 			<%
 				String username = request.getParameter("email");
 				String password = request.getParameter("pass");
+				
+				String salt = Password.getSalt();
+				String pwhash = Password.hashWithSalt(password, salt);
 			%>
+			<c:set var="DBpass" value="<%=pwhash%>" />
+			<c:set var="DBsalt" value="<%=salt%>" />
 
 			<c:choose>
 				<c:when test="${empty userDetails}">
 					Added new user with the password. <br>
-					<%
-						String salt = Password.getSalt();
-						String pwhash = Password.hashWithSalt(password, salt);
-					%>
-					<c:set var="DBpass" value="<%=pwhash%>" />
-					<c:set var="DBsalt" value="<%=salt%>" />
-
+					
 					<sql:transaction dataSource="jdbc/lut2">
 						<sql:update var="count">
         				INSERT INTO users VALUES (?, ?, ?);
@@ -56,16 +55,11 @@
 				</c:when>
 				<c:otherwise>
 					User existed - updating password! <br>
-					<c:set var="DBsalt" value="${userDetails.salt}" />
-					<%
-						String salt = pageContext.getAttribute("DBsalt").toString();
-						String pwhash = Password.hashWithSalt(password,salt);
-					%>
-					<c:set var="DBpass" value="<%=pwhash%>" />
+					
 					<sql:transaction dataSource="jdbc/lut2">
 						<sql:update var="count">
 							UPDATE users
-							SET pw=? <sql:param value="${DBpass}" />
+							SET pw=? <sql:param value="${DBpass}" /> , salt=? <sql:param value="${DBsalt}" />
 							WHERE uname=? <sql:param value="${param.email}" />;
 						</sql:update>
 					</sql:transaction>
