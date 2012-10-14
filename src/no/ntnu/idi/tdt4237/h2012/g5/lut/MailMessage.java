@@ -68,8 +68,7 @@ public class MailMessage implements Runnable {
 			out.write("To: "+to+"\r\n");
 			out.write("Subject: "+subject+"\r\n");
 			out.write("MIME-Version: 1.0\r\n");
-			out.write("Content-Type: text/plain; charset=ISO_8859-1\r\n");
-			out.write("This is a MIME encoded message.\r\n\r\n");
+			out.write("Content-Type: text/plain; charset=ISO_8859-1\r\n\r\n");
 			out.write(content+"\r\n\r\n");
 			out.write(".\n");
 			out.flush();

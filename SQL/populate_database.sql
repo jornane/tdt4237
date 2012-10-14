@@ -5,8 +5,7 @@ delete from user_reviews;
 delete from users;
 
 
-insert into admin_users values ('admin','53P6uKTxQCi4VFTUrVdr986aQ3CIk3YiXDx8jOiy+N6V98hSwC0PFWD5Bq5eIuKlRhuGdI04k7OY
-4uxMwgt1Ww==','hzxUOP8lWes2Yg==');
+insert into admin_users values ('admin','53P6uKTxQCi4VFTUrVdr986aQ3CIk3YiXDx8jOiy+N6V98hSwC0PFWD5Bq5eIuKlRhuGdI04k7OY4uxMwgt1Ww==','hzxUOP8lWes2Yg==');
 
 
 insert into country values ('NO','Norway');

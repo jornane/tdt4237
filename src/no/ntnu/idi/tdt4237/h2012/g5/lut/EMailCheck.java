@@ -28,10 +28,12 @@ public class EMailCheck {
 
 	public boolean check(String emailAddress) {
 		try {
+			if (!emailAddress.equals(emailAddress.replaceFirst("\\.\\.", "")))
+				return false; // E-mail addresses cannot contain two successive dots
 			String[] parts = emailAddress.split("@");
 			if (parts.length != 2)
 				return false;
-			if (!"".equals(parts[0].replaceFirst("([A-Za-z0-9!#\\$%&'\\*\\+\\-/=\\?\\^_`\\{|\\}~]+)", "")))
+			if (!"".equals(parts[0].replaceFirst("([A-Za-z0-9\\!\\#\\$\\%\\&'\\*\\+\\-\\/\\=\\?\\^\\_\\`\\{\\|\\}\\~\\.]+)", "")))
 				return false; // All valid e-mail characters
 			if (emailAddress.charAt(0) == '.' || emailAddress.charAt(emailAddress.length()-1) == '.')
 				return false; // Hostnames cannot start or end with a dot
@@ -39,14 +41,10 @@ public class EMailCheck {
 			String host = IDN.toASCII(parts[1]);
 			if (localPart.charAt(localPart.length()-1) == '.')
 				return false; // The addr-spec part cannot start or end with a dot
-			if (!localPart.equals(localPart.replaceFirst("\\.\\.", "")))
-				return false; // The addr-spec part cannot contain two successive dots
-			if (!"".equals(parts[1].replaceFirst("([A-Za-z0-9\\-\\.]+)", "")))
+			if (!"".equals(host.replaceFirst("([A-Za-z0-9\\-\\.]+)", "")))
 				return false;  // Hostnames can contain letters, numbers, dashes and dots
 			if (host.charAt(0) == '.')
 				return false; // Hostnames cannot start or end with a dot
-			if (!host.equals(host.replaceFirst("\\.\\.", "")))
-				return false; // Hostnames cannot contain two successive dots
 			if (!localPart.equals(localPart.replaceFirst("\\.([0-9]+)\\.", "")))
 				return false; // Reject direct-to-IPv4 mailing (IPv6 is already rejected because : is not allowed)
 			if (validHosts.containsKey(host))
