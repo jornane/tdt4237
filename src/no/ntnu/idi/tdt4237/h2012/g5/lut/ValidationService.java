@@ -37,7 +37,7 @@ public class ValidationService {
 	
 	public boolean checkActivationCode(String email, UUID uuid) {
 		UUID result = uuids.get(email);
-		if (result == null)
+		if (!uuid.equals(result))
 			return false;
 		garbageCollect();
 		return expires.containsValue(email);
