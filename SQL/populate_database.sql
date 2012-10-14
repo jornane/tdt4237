@@ -47,10 +47,10 @@ insert into school values (12,'Grenoble Institute of Technology','GIT','Grenoble
 insert into school values (13,'Stanford University','STAN','San Francisco',7911,'USA');
 insert into school values (14,'University of California Santa Barbara','UCSB','Santa Barbara',1199,'USA');
 
-insert into user_reviews values (1,'Michelle','Excellent, fun and interesting.');
-insert into user_reviews values (2,'Michelle','Great campus. Interesting classes.');
-insert into user_reviews values (3,'Michelle','Loved it. Especially the class computers101.');
-insert into user_reviews values (4,'Michelle','Some great classes. Some not so great.');
-insert into user_reviews values (5,'Michelle','Great place to study computer science.');
-insert into user_reviews values (6,'Michelle','Stayed there for two semesters. Studied physiscs and computer science. They have a great lab. ');
+insert into user_reviews values (1,'peter','Excellent, fun and interesting.');
+insert into user_reviews values (2,'saad','Great campus. Interesting classes.');
+insert into user_reviews values (3,'yorn','Loved it. Especially the class computers101.');
+insert into user_reviews values (4,'dat','Some great classes. Some not so great.');
+insert into user_reviews values (5,'tiina','Great place to study computer science.');
+insert into user_reviews values (6,'peter','Stayed there for two semesters. Studied physiscs and computer science. They have a great lab. ');
 

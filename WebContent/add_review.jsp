@@ -16,14 +16,23 @@ else if(!isAuthVal.equals("1"))
 
 %>
 
+<sql:query var="users" dataSource="jdbc/lut2">
+    SELECT * FROM users
+    WHERE uname =? <sql:param value="<%=(String)session.getAttribute( "username" ) %>" /> 
+</sql:query>
+
+<c:set var="userDetails" value="${users.rows[0]}"/>
+
+
 <sql:transaction dataSource="jdbc/lut2">
     <sql:update var="count">
         INSERT INTO user_reviews VALUES (?, ?, ?);
         <sql:param value="${param.school_id}"/>
-        <sql:param value="${param.name}"/>
+        <sql:param value="${userDetails.uname}"/>
         <sql:param value="${param.review}"/>
     </sql:update>
 </sql:transaction>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,9 +44,8 @@ else if(!isAuthVal.equals("1"))
         <title>Review added!</title>
     </head>
     <body>
-        <h1>Thanks <c:out value="${param.name}"/>!</h1>
+        <h1>Thanks <c:out value="${userDetails.name}"/>!</h1>
         Your contribution is appreciated.<br>
         You will be redirected back to the review page in a few seconds.
-    </tr>
 </body>
 </html>

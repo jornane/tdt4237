@@ -29,7 +29,7 @@ PRIMARY KEY (school_id)
 
 create table user_reviews(
 school_id INT,
-user_id VARCHAR(50),
+uname VARCHAR(100),
 review varchar(500)
 );
 

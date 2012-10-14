@@ -52,7 +52,21 @@ else if(!isAuthVal.equals("1"))
             <c:otherwise>
                 <c:forEach var="review" items="${reviews.rowsByIndex}">
                     <c:out value="${review[2]}" /><br>
-                    <i><c:out value="${review[1]}"/></i>
+                    <i>
+                    
+                    <sql:query var="users" dataSource="jdbc/lut2">
+    					SELECT * FROM users
+    					WHERE uname =? <sql:param value="${review[1]}" /> 
+					</sql:query>
+                    
+                    <c:choose> <c:when test="${ not empty users }">
+                    	<c:out value="${users.rows[0].name}"/>
+                    </c:when>
+            		<c:otherwise>
+            			deleted user
+            		</c:otherwise>
+        			</c:choose>
+                    </i>
                     <br><br>
                 </c:forEach>
             </c:otherwise>
@@ -60,7 +74,7 @@ else if(!isAuthVal.equals("1"))
 
 
 
-        <table border="0">
+        <table>
             <thead>
                 <tr>
                     <th colspan="2">Help improving LUT2.0 by adding a review of <c:out value="${school.rows[0].short_name}"/></th>
@@ -71,9 +85,7 @@ else if(!isAuthVal.equals("1"))
                     <td>
                         <form action="add_review.jsp"  method="post">
                             <input type="hidden" name="school_id" value="<c:out value="${school.rows[0].school_id}"/>" />
-                            <textarea name="review" rows=10 cols=60 wrap="physical" autofocus="on" ></textarea>
-                            <br><br>
-                            Your name: <input type="text" name="name" />
+                            <textarea name="review" rows=10 cols=60 ></textarea>
                             <br><br>
                             <input type="submit" value="Add review" />
                           </form>
