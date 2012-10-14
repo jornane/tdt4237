@@ -4,6 +4,7 @@
 
 <%@ page import="password.Password" %>
 
+
 <sql:query var="users" dataSource="jdbc/lut2">
     SELECT * FROM users
     WHERE uname =? <sql:param value="${param.username}" /> 
@@ -41,7 +42,12 @@
 	<c:choose>
 			<c:when test="${not empty userDetails and loginSuccess == 0}">
 					<h1>Login succeeded</h1> 
-		                Welcome <c:out value="${ userDetails.uname}" />.<br> 
+		                Welcome <c:out value="${ userDetails.uname}" />.<br>
+						<%
+		                    String Authorized = "1";
+                			session.setAttribute( "isAuth", Authorized);
+                			response.sendRedirect("./");
+                		%>
 		        </c:when>
 		        <c:otherwise>
 		                Login failed <br>

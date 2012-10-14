@@ -3,6 +3,21 @@
 <%@page errorPage="error.jsp" %>
 <%@ page import="password.Password"%>
 
+<%
+
+String isAuthVal = (String)session.getAttribute( "isAuth" );
+	
+if(isAuthVal == null)
+{
+	response.sendRedirect("./login.jsp");
+}
+else if(!isAuthVal.equals("2"))
+{
+	response.sendRedirect("./adminlogin.jsp");
+}
+
+%>
+
 
 <sql:transaction dataSource="jdbc/lut2">
 		<%

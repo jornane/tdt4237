@@ -2,6 +2,20 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page errorPage="error.jsp" %>
 
+<%
+String isAuthVal = (String)session.getAttribute( "isAuth" );
+	
+if(isAuthVal == null)
+{
+	response.sendRedirect("./login.jsp");
+}
+else if(!isAuthVal.equals("1"))
+{
+	response.sendRedirect("./login.jsp");
+}
+
+%>
+
 <sql:transaction dataSource="jdbc/lut2">
     <sql:update var="count">
         INSERT INTO user_reviews VALUES (?, ?, ?);

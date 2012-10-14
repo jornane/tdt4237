@@ -1,11 +1,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@page errorPage="error.jsp" %>
+<%@page errorPage="error.jsp"%>
+
 
 <sql:query var="country" dataSource="jdbc/lut2">
     SELECT full_name FROM country
 </sql:query>
 
+<%
+
+String isAuthVal = (String)session.getAttribute( "isAuth" );
+	
+if(isAuthVal == null)
+{
+	response.sendRedirect("./login.jsp");
+}
+else if(!isAuthVal.equals("1"))
+{
+	response.sendRedirect("./login.jsp");
+}
+
+%>
+ 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
