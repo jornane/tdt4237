@@ -1,9 +1,17 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ page import="no.ntnu.idi.tdt4237.h2012.g5.lut.ValidationService" %>
 <%@ page import="java.util.UUID" %>
+
+<sql:query var="users" dataSource="jdbc/lut2">
+    	SELECT * FROM users
+    	WHERE uname = ? <sql:param value="${param.email}" />
+</sql:query>
+<c:set var="userDetails" value="${users.rows[0]}"/>
+
 
 <!DOCTYPE html>
 
@@ -26,6 +34,9 @@
 		<form method="post" action="set_password.jsp">
 				<input type="hidden" name="email" value="${param.email}" />
 				<input type="hidden" name="activationCode"   value="${param.activationCode}" /> <% //  the random value from link otherwise can change the username (should not make it used at this point!) %> 
+				<c:if test="${empty userDetails}">
+					Enter your display name: <input type="text" name="name" /> <br>
+				</c:if>
 				Please enter your new password <input type="password" name="pass" /><br>
 				<input type="submit" value="submit" />
 		</form>
