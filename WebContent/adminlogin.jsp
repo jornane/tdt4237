@@ -10,7 +10,7 @@
     </head>
     <body>
         <h1>Welcome to the LUT administration pages!</h1>
-        <table border="0">
+        <table>
             <thead>
                 <tr>
                     <th>Log on here to perform administrative tasks</th>

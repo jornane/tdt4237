@@ -35,6 +35,11 @@ else if(!isAuthVal.equals("2"))
 <title>LUT Admin pages</title>
 </head>
 <body>
+	<form action="logout.jsp">
+		<input type="submit" value="Logout" />
+	</form>
+ <br>
+
 	Welcome!
 	<br>
 	<br>
