@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page errorPage="error.jsp"%>
 <%@ page import="password.Password"%>
+<%@page import="captcha.CaptchaServlet"%>
 
 <sql:query var="adminUsers" dataSource="jdbc/lut2">
     SELECT * FROM admin_users
@@ -19,14 +20,31 @@
 		<%
 			%><c:set var="correctPass" value="${adminUserDetails.pw}" />
 		<%
+				// check password
 				String salt = pageContext.getAttribute("DBsalt").toString();
 				String password = pageContext.getAttribute("pass").toString();
 				String correctPass = pageContext.getAttribute("correctPass").toString();
-				
 				String pwhash = Password.hashWithSalt(password, salt);
 				
+				//check captcha, if needed
+				String MD5_captcha = (String) session.getAttribute("captcha");
+				String code = (String) request.getParameter("code");
+				String MD5_code = CaptchaServlet.getMD5Hash(code);
+
+				Integer loginTries = (Integer)session.getAttribute("loginTries");
+				boolean isCaptchaNeeded = loginTries>2 ? true : false;
+				boolean isCaptchaValid = false;
+				if (isCaptchaNeeded) {
+					if (MD5_captcha != null && code != null
+							&& MD5_captcha.equals(MD5_code)) {
+						isCaptchaValid = true;
+					}
+				} else {
+					isCaptchaValid = true;
+				}
+				
 				int loginResult = 1;
-				if (pwhash.equals(correctPass) ) {
+				if (pwhash.equals(correctPass) && isCaptchaValid) {
 					loginResult = 0;
 				}
 			%>
@@ -39,15 +57,23 @@
 <c:choose>
 	<c:when test="${not empty adminUserDetails and loginSuccess == 0}">
 		<%
+    			session.setAttribute( "loginTries", 0);
+
                 String Authorized = "2";
                 session.setAttribute( "isAuth", Authorized);
         		response.sendRedirect("./admin.jsp");
 		%>
 
-
 	</c:when>
 	<c:otherwise>
 	<%
+		Integer loginTries = (Integer)session.getAttribute("loginTries");
+		if (loginTries==null) {
+			loginTries = 0;
+		}
+	
+    	session.setAttribute( "loginTries", loginTries+1);
+
 		response.sendRedirect("./adminlogin.jsp");
 	%>
 		</c:otherwise>

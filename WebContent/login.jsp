@@ -26,6 +26,16 @@
 						<p>
 							Password:<input type="password" name="password" size="20">
 						</p>
+												<%
+                    		Integer loginTries = (Integer)session.getAttribute("loginTries");
+                    		if (loginTries>2) {
+                    			%>
+						<img src="CaptchaServlet"> <br> Captcha: <input
+							type="text" name="code"> <br>
+						<%
+                    		}                            
+                            %>
+						
 						<p>
 							<input type="submit" value="submit" name="login">
 						</p>

@@ -1,6 +1,6 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@page errorPage="error.jsp" %> --%>
+<%@page errorPage="error.jsp" %>
 
 <%@ page import="password.Password" %>
 <%@ page import="no.ntnu.idi.tdt4237.h2012.g5.lut.ValidationService" %>

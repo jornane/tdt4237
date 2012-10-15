@@ -36,6 +36,7 @@ else if(!isAuthVal.equals("2"))
 </head>
 <body>
 	<form action="logout.jsp">
+		<input type="hidden" name="redirect" value="adminlogin.jsp"/>
 		<input type="submit" value="Logout" />
 	</form>
  <br>

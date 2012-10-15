@@ -10,7 +10,14 @@
 <%               
 	String Authorized = "0";
 	session.setAttribute( "isAuth", Authorized);
-	response.sendRedirect("./");
+	
+	String redirect = request.getParameter("redirect");
+	if (redirect!= null) {
+		response.sendRedirect("./"+redirect);
+	} else {
+		response.sendRedirect("./");
+	}
+	
 %>
 </body>
 </html>
