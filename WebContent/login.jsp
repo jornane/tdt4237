@@ -39,7 +39,8 @@
 						<p>
 							<input type="submit" value="submit" name="login">
 						</p>
-						<a href="signup.jsp">Sign up here</a>
+						<a href="signup.jsp">Forgot your password?</a> <br>
+						<a href="signup.jsp">Sign up here!</a>
 
 					</form></td>
 			</tr>
