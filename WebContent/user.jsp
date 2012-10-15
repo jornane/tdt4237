@@ -41,7 +41,7 @@
 					String MD5_code = CaptchaServlet.getMD5Hash(code);
 
 					Integer loginTries = (Integer)session.getAttribute("loginTries");
-					boolean isCaptchaNeeded = loginTries>2 ? true : false;
+					boolean isCaptchaNeeded = loginTries != null && loginTries>2 ? true : false;
 					boolean isCaptchaValid = false;
 					if (isCaptchaNeeded) {
 						if (MD5_captcha != null && code != null
