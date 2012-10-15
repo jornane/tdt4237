@@ -31,7 +31,7 @@
 				String code = (String) request.getParameter("code");
 				String MD5_code = CaptchaServlet.getMD5Hash(code);
 
-				Integer loginTries = (Integer)session.getAttribute("loginTries");
+				Integer loginTries = (Integer)session.getAttribute("adminLoginTries");
 				boolean isCaptchaNeeded = loginTries>2 ? true : false;
 				boolean isCaptchaValid = false;
 				if (isCaptchaNeeded) {
@@ -57,7 +57,7 @@
 <c:choose>
 	<c:when test="${not empty adminUserDetails and loginSuccess == 0}">
 		<%
-    			session.setAttribute( "loginTries", 0);
+    			session.setAttribute( "adminLoginTries", 0);
 
                 String Authorized = "2";
                 session.setAttribute( "isAuth", Authorized);
@@ -67,12 +67,12 @@
 	</c:when>
 	<c:otherwise>
 	<%
-		Integer loginTries = (Integer)session.getAttribute("loginTries");
+		Integer loginTries = (Integer)session.getAttribute("adminLoginTries");
 		if (loginTries==null) {
 			loginTries = 0;
 		}
 	
-    	session.setAttribute( "loginTries", loginTries+1);
+    	session.setAttribute( "adminLoginTries", loginTries+1);
 
 		response.sendRedirect("./adminlogin.jsp");
 	%>
