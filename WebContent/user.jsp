@@ -9,8 +9,6 @@
     WHERE uname =? <sql:param value="${param.username}" />
 </sql:query>
 
-
-
 <c:set var="userDetails" value="${users.rows[0]}" />
 
 <c:choose>

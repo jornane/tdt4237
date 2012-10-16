@@ -27,8 +27,12 @@ public class LoginValidator {
 		
 		Integer loginTries = logins.get(ipAddress);
 		
-		if (loginTries < 3) {
+		if (loginTries <= 3) {
 			isCaptchaValid = true;
+			
+			if (isPasswordValid) {
+				logins.remove(ipAddress);
+			}
 		} else {
 			String MD5_captcha = (String) session.getAttribute("captcha");
 			String code = (String) request.getParameter("code");
