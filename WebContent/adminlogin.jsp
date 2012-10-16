@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page errorPage="error.jsp"%>
+<%@page import="captcha.LoginValidator"%>
 
 <!DOCTYPE html>
 <html>
@@ -27,8 +28,7 @@
 							Password: <input type="password" name="password" size="20">
 						</p>
 						<%
-                    		Integer loginTries = (Integer)session.getAttribute("adminLoginTries");
-                    		if (loginTries !=null && loginTries>2) {
+                    		if (LoginValidator.shouldShowCaptcha(request, true)) {
                     			%>
 						<img src="CaptchaServlet"> <br> Captcha: <input
 							type="text" name="code"> <br>

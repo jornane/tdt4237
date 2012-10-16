@@ -1,3 +1,4 @@
+<%@page import="captcha.LoginValidator"%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,21 +27,20 @@
 						<p>
 							Password:<input type="password" name="password" size="20">
 						</p>
-												<%
-                    		Integer loginTries = (Integer)session.getAttribute("loginTries");
-                    		if (loginTries !=null && loginTries>2) {
+						<%
+					if (LoginValidator.shouldShowCaptcha(request)) {
                     			%>
 						<img src="CaptchaServlet"> <br> Captcha: <input
 							type="text" name="code"> <br>
 						<%
                     		}                            
                             %>
-						
+
 						<p>
 							<input type="submit" value="submit" name="login">
 						</p>
-						<a href="signup.jsp">Forgot your password?</a> <br>
-						<a href="signup.jsp">Sign up here!</a>
+						<a href="signup.jsp">Forgot your password?</a> <br> <a
+							href="signup.jsp">Sign up here!</a>
 
 					</form></td>
 			</tr>
