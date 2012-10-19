@@ -6,9 +6,30 @@
 <%@ page import="no.ntnu.idi.tdt4237.h2012.g5.lut.ValidationService" %>
 <%@ page import="java.util.UUID" %>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<%
+ 
+String password = request.getParameter("pass");
+	
+if (password.length() < 8) { %>
+	    <head>
+	        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	        <meta http-equiv="refresh" content="5;url=./password.jsp?email=${param.email}&activationCode=${param.activationCode}"> 
+	        <link rel="stylesheet" type="text/css" href="lutstyle.css">
+	        <title>Password too short!</title>
+	    </head>
+	    <body>
+	        Entered password has to be at least 8 characters long.
+	        You will be redirected back to the password page in a few seconds.
+		</body>
+	<%
+} else { %>
+
+
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="refresh" content="5;url=index.jsp"> 
@@ -31,7 +52,6 @@
 			<c:set var="userDetails" value="${users.rows[0]}"/>
 			<%
 				String username = request.getParameter("email");
-				String password = request.getParameter("pass");
 				
 				String salt = Password.getSalt();
 				String pwhash = Password.hashWithSalt(password, salt);
@@ -79,4 +99,9 @@
 	<br> You will be redirected to the LUT2.0 main page in a few
 	seconds.
 </body>
+
+<% 
+} %>
+
 </html>
+

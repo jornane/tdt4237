@@ -37,7 +37,7 @@
 				<c:if test="${empty userDetails}">
 					Enter your display name: <input type="text" name="name" /> <br>
 				</c:if>
-				Please enter your new password <input type="password" name="pass" /><br>
+				Please enter your new password <input type="password" name="pass" /> (must be at least 8 characters)<br>
 				<input type="submit" value="submit" />
 		</form>
 		<%
