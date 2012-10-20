@@ -98,8 +98,9 @@ else if(!isAuthVal.equals("1"))
 						<input type="hidden" name="school_id"
 							value="<c:out value="${school.rows[0].school_id}"/>" />
 						<textarea name="review" rows=10 cols=60></textarea>
-						<br>
-						<br> <input type="submit" value="Add review" />
+						<br> <img src="CaptchaServlet"> <br> Captcha: <input
+							type="text" name="code"> <br> <br> <br> <input
+							type="submit" value="Add review" />
 					</form>
 				</td>
 			</tr>
