@@ -14,7 +14,7 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Log on here to perform see, add reviews for schools</th>
+				<th>Log on here to see, add reviews for schools</th>
 			</tr>
 		</thead>
 		<tbody>
