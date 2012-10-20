@@ -67,13 +67,15 @@ else if(!isAuthVal.equals("1"))
 				<i> <sql:query var="users" dataSource="jdbc/lut2">
     					SELECT * FROM users
     					WHERE uname =? <sql:param value="${review[1]}" />
-					</sql:query> <c:choose>
-						<c:when test="${ not empty users }">
-							<c:out value="${users.rows[0].name}" />
+					</sql:query> 
+					<c:set var="user" value="${users.rows[0]}" />
+					<c:choose>
+						<c:when test="${ not empty user }">
+							 <c:out value="${user.name}" />
 						</c:when>
 						<c:otherwise>
-            			deleted user
-            		</c:otherwise>
+            				<font color="red">deleted user</font>
+            			</c:otherwise>
 					</c:choose>
 				</i>
 				<br>
