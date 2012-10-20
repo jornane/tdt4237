@@ -109,11 +109,8 @@ else if(!isAuthVal.equals("2"))
 						type="text" value="<c:out value="${user[0]}" />" name="newEmail"
 						maxlength="100" size="100" /> <br> Name: <input type="text"
 						value="<c:out value="${user[3]}" />" name="name" maxlength="100"
-						size="100" /> <br> Hash:
-					<c:out value="${user[1]}" />
-					<br> Salt:
-					<c:out value="${user[2]}" />
-					<br> Password: <input type="text"
+						size="100" /> <br>
+						Password: <input type="text"
 						placeholder="Enter new password" name="password" maxlength="100"
 						size="100" /> <input type="submit" value="Edit user" />
 				</form>
