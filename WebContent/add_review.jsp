@@ -24,7 +24,7 @@ else if(!isAuthVal.equals("1"))
 	
 	if (MD5_captcha == null || code == null
 			|| !MD5_captcha.equals(MD5_code)) {
-		response.sendRedirect("./school_reviews.jsp?school_id="+request.getParameter("school_id"));
+		%>Wrong captcha! <%
 	} else {
 		
 %>
