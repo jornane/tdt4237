@@ -11,7 +11,7 @@
     </head>
     <body>
         <h1>We're sorry...</h1>
-        <table border="0">
+        <table>
             <thead>
                 <tr>
                     <th>An error occurred.</th>
