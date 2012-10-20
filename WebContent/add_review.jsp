@@ -24,9 +24,10 @@ else if(!isAuthVal.equals("1"))
 	
 	if (MD5_captcha == null || code == null
 			|| !MD5_captcha.equals(MD5_code)) {
+		session.setAttribute("captcha", null);
 		out.print("Wrong captcha!");
 	} else {
-		
+		session.setAttribute("captcha", null);
 %>
 
 <sql:query var="users" dataSource="jdbc/lut2">
