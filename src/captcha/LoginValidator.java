@@ -5,6 +5,8 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import no.ntnu.idi.tdt4237.h2012.g5.lut.ProxyService;
+
 import password.Password;
 
 public class LoginValidator {
@@ -13,7 +15,7 @@ public class LoginValidator {
 	private static HashMap<String, Integer> AdminLoginTries = new HashMap<String, Integer>();
 
 	public static boolean isValidLogin(String password, String hash, String salt, String captcha, HttpServletRequest request, HttpSession session, boolean asAdmin) {
-		String ipAddress = request.getRemoteAddr();
+		String ipAddress = ProxyService.remoteAddr(request, false);
 		String pwhash = Password.hashWithSalt(password, salt);				
 
 		boolean isPasswordValid = pwhash.equals(hash);
@@ -57,7 +59,7 @@ public class LoginValidator {
 	}
 	
 	public static void triedToLogin(HttpServletRequest request, boolean asAdmin) {
-		String ipAddress = request.getRemoteAddr();
+		String ipAddress = ProxyService.remoteAddr(request, false);
 		
 		HashMap<String, Integer> logins = asAdmin ? AdminLoginTries : LoginTries;
 		
@@ -71,7 +73,7 @@ public class LoginValidator {
 	
 	public static boolean shouldShowCaptcha(HttpServletRequest request, boolean asAdmin) {
 		boolean shouldShowCaptcha = false;
-		String ipAddress = request.getRemoteAddr();
+		String ipAddress = ProxyService.remoteAddr(request, false);
 		
 		HashMap<String, Integer> logins = asAdmin ? AdminLoginTries : LoginTries;
 		

@@ -38,7 +38,8 @@
 				String activationCode = vs.getActivationCode(email)
 						.toString();
 				// save it to validation service thing
-				String link = request.getScheme() + "://" + request.getLocalName() + ":" + request.getLocalPort() + request.getContextPath() + "/"; 
+				//String link = request.getScheme() + "://" + request.getLocalName() + ":" + request.getLocalPort() + request.getContextPath() + "/"; 
+				String link = "https://lut.ntnu.yorn.priv.no" + request.getContextPath() + "/"; 
 				link += "password.jsp?email=" + email + "&activationCode=" + activationCode;
 				
 				String message = "To set a new password for your account in ";
@@ -46,7 +47,7 @@
 				message += "\n\n ";
 				
 				
-				new MailMessage("yorinad@stud.ntnu.no", email, "Set password for your LUT account", message, InetAddress.getByName("smtp.stud.ntnu.no")).run();
+				new MailMessage("noreply@lut.ntnu.yorn.priv.no", email, "Set password for your LUT account", message, InetAddress.getByName("smtp.stud.ntnu.no")).run();
 				
 				%>
 		
