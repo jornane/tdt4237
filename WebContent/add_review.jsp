@@ -24,7 +24,7 @@ else if(!isAuthVal.equals("1"))
 	
 	if (MD5_captcha == null || code == null
 			|| !MD5_captcha.equals(MD5_code)) {
-		%>Wrong captcha! <%
+		out.print("Wrong captcha!");
 	} else {
 		
 %>
