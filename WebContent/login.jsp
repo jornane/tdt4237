@@ -1,5 +1,5 @@
 <%@page import="captcha.LoginValidator"%>
-
+<%@page errorPage="error.jsp"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

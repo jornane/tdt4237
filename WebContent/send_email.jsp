@@ -1,3 +1,4 @@
+<%@page errorPage="error.jsp"%>
 <%@page import="captcha.CaptchaServlet"%>
 <%@page import="no.ntnu.idi.tdt4237.h2012.g5.lut.ValidationService"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
