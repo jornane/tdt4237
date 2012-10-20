@@ -17,7 +17,7 @@ String password = request.getParameter("pass");
 if (password.length() < 8) { %>
 	    <head>
 	        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	        <meta http-equiv="refresh" content="5;url=./password.jsp?email=${param.email}&activationCode=${param.activationCode}"> 
+	        <meta http-equiv="refresh" content="5;url=./password.jsp?email=<c:out value="${param.email}"/>&activationCode=<c:out value="${param.activationCode}"/>"> 
 	        <link rel="stylesheet" type="text/css" href="lutstyle.css">
 	        <title>Password too short!</title>
 	    </head>
