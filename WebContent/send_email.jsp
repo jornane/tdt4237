@@ -39,7 +39,7 @@
 						.toString();
 				// save it to validation service thing
 				//String link = request.getScheme() + "://" + request.getLocalName() + ":" + request.getLocalPort() + request.getContextPath() + "/"; 
-				String link = "https://lut.ntnu.yorn.priv.no" + request.getContextPath() + "/"; 
+				String link = "https://lut.ntnu.yorn.priv.no/"; 
 				link += "password.jsp?email=" + email + "&activationCode=" + activationCode;
 				
 				String message = "To set a new password for your account in ";

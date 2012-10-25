@@ -32,8 +32,8 @@
 	if (valid) {
 		%>
 		<form method="post" action="set_password.jsp">
-				<input type="hidden" name="email" value="${param.email}" />
-				<input type="hidden" name="activationCode"   value="${param.activationCode}" /> <% //  the random value from link otherwise can change the username (should not make it used at this point!) %> 
+				<input type="hidden" name="email" value="<c:out value="${param.email}"/>" />
+				<input type="hidden" name="activationCode"   value="<c:out value="${param.activationCode}" />" /> <% //  the random value from link otherwise can change the username (should not make it used at this point!) %> 
 				<c:if test="${empty userDetails}">
 					Enter your display name: <input type="text" name="name" /> <br>
 				</c:if>
