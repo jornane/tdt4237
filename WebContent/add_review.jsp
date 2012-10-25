@@ -15,9 +15,6 @@ else if(!isAuthVal.equals("1"))
 	response.sendRedirect("./login.jsp");
 }
 
-%>
-
-<%
 	String MD5_captcha = (String) session.getAttribute("captcha");
 	String code = (String) request.getParameter("code");
 	String MD5_code = CaptchaServlet.getMD5Hash(code);
