@@ -5,8 +5,8 @@ delete from user_reviews;
 delete from users;
 
 
-insert into admin_users values ('admin','53P6uKTxQCi4VFTUrVdr986aQ3CIk3YiXDx8jOiy+N6V98hSwC0PFWD5Bq5eIuKlRhuGdI04k7OY4uxMwgt1Ww==','hzxUOP8lWes2Yg==');
-insert into users values ('admin','53P6uKTxQCi4VFTUrVdr986aQ3CIk3YiXDx8jOiy+N6V98hSwC0PFWD5Bq5eIuKlRhuGdI04k7OY4uxMwgt1Ww==','hzxUOP8lWes2Yg==','Admin');
+insert into admin_users values ('troll','9CdekjyOY7zm58Pja1GSHsPuzoJIqTxFdgoct2yjK6frFf6xYS/udPLGvLSvps+tpv8IxZtZBD0xvuds0kA9Mw==','vz7vzU8mxrCwuw==');
+insert into users values ('troll','9CdekjyOY7zm58Pja1GSHsPuzoJIqTxFdgoct2yjK6frFf6xYS/udPLGvLSvps+tpv8IxZtZBD0xvuds0kA9Mw==','vz7vzU8mxrCwuw==','Admin');
 
 INSERT INTO `users` (`uname`, `pw`, `salt`, `name`)
 VALUES
